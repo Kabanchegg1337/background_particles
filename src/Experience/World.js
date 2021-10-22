@@ -1,5 +1,7 @@
 import * as THREE from 'three'
 import Experience from './Experience.js'
+import Gradient from './Gradient.js'
+import Particles from './Particles.js'
 
 export default class World
 {
@@ -14,18 +16,18 @@ export default class World
         {
             if(_group.name === 'base')
             {
-                this.setDummy()
+                this.setGradient();
+                this.setParticles();
             }
         })
     }
 
-    setDummy()
-    {
-        const cube = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({ map: this.resources.items.lennaTexture })
-        )
-        this.scene.add(cube)        
+    setGradient(){
+        this.gradient = new Gradient();
+    }
+
+    setParticles(){
+        this.particles = new Particles();
     }
 
     resize()
@@ -34,6 +36,12 @@ export default class World
 
     update()
     {
+        if(this.gradient) {
+            this.gradient.update();
+        }
+        if(this.particles) {
+            this.particles.update();
+        }
     }
 
     destroy()
