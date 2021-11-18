@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import Experience from './Experience.js'
 import Gradient from './Gradient.js'
 import Particles from './Particles.js'
+import Vignette from './Vignette.js'
 
 export default class World
 {
@@ -17,6 +18,7 @@ export default class World
             if(_group.name === 'base')
             {
                 this.setGradient();
+                this.setVignette();
                 this.setParticles();
             }
         })
@@ -28,6 +30,10 @@ export default class World
 
     setParticles(){
         this.particles = new Particles();
+    }
+
+    setVignette(){
+        this.vignette = new Vignette();
     }
 
     resize()

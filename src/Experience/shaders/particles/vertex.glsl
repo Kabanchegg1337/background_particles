@@ -1,5 +1,6 @@
 uniform float uTime;
 uniform float uSize;
+uniform float uTimeModifier;
 
 attribute float aProgress;
 attribute float aSize;
@@ -11,7 +12,7 @@ varying float vAlpha;
 
 void main(){
     vAlpha = aAlpha;
-    float progress = mod(aProgress + uTime * 0.00005, 1.);
+    float progress = mod(aProgress + uTime * uTimeModifier, 1.);
 
     vec4 modelPosition = modelMatrix * vec4(position, 1.);
     

@@ -12,12 +12,20 @@ export default class Particles{
         this.time = this.experience.time;
         this.resources = this.experience.resources
 
-        this.count = 1000;
+        this.count = 200000;
 
         if (this.debug){
             this.debugFolder = this.debug.addFolder({title: "particles"})
         }
 
+        if (this.debug){
+            this.debugFolder.addInput(this, 'count', {min: 1000, max: 1000000, step: 1})
+            .on('change', () => {
+                this.setGeometry()
+                this.mesh.geometry = this.geometry
+            })
+            
+        }
         this.setGeometry();
         this.setMaterial();
         this.setPoints();
@@ -56,8 +64,9 @@ export default class Particles{
             blending: THREE.AdditiveBlending,
             uniforms: {
                 uTime: {value : 0},
+                uTimeModifier: {value: 0.00001},
                 uTexture: {value: this.resources.items.particleTexture},
-                uSize: {value: 50.}
+                uSize: {value: 5.}
             }
         })
 
@@ -66,6 +75,11 @@ export default class Particles{
                 this.material.uniforms.uSize,
                 'value',
                 {min: 0, max: 200, step: 1}
+            )
+            this.debugFolder.addInput(
+                this.material.uniforms.uTimeModifier,
+                'value',
+                {min: 0, max: 0.2, step: 0.00001}
             )
         }
     }
