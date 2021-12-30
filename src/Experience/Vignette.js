@@ -27,8 +27,6 @@ export default class Vignette {
     }
 
     setMaterial(){
-        //this.material = new THREE.MeshBasicMaterial({color: "#ff0000"});
-
         this.color = {};
         this.color.hex = "#130819";
         this.color.instance = new THREE.Color(this.color.hex);

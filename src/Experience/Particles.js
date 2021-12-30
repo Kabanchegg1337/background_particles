@@ -56,6 +56,11 @@ export default class Particles{
         this.geometry.setAttribute('aAlpha', new THREE.Float32BufferAttribute(alphaArray, 1));
     }
     setMaterial(){
+
+        this.color = {};
+        this.color.hex = "#ffffff";
+        this.color.instance = new THREE.Color(this.color.hex);
+
         this.material = new THREE.ShaderMaterial({
             vertexShader: vertex,
             fragmentShader: fragment,
@@ -66,7 +71,8 @@ export default class Particles{
                 uTime: {value : 0},
                 uTimeModifier: {value: 0.00001},
                 uTexture: {value: this.resources.items.particleTexture},
-                uSize: {value: 5.}
+                uSize: {value: 5.},
+                uColor: {value:  this.color.instance}
             }
         })
 
@@ -81,6 +87,14 @@ export default class Particles{
                 'value',
                 {min: 0, max: 0.2, step: 0.00001}
             )
+            this.debugFolder.addInput(
+                this.color,
+                'hex',
+                {view: 'color', label:"color"}
+            )
+            .on('change', () => {
+                this.color.instance.set(this.color.hex)
+            })
         }
     }
     setPoints(){
