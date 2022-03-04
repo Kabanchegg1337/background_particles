@@ -1,6 +1,17 @@
-# Three.js - Template - Complex
+# Background particles
+<p align="">
+<img src="https://img.shields.io/badge/-OpenGL-informational" />
+<img src="https://img.shields.io/badge/-Three.js-informational" />
+</p>
 
-🚧 This template is under construction
+Just particles.
+
+## Gallery
+<img src="resources\images\particles.gif?raw=true" />
+<img src="resources\images\particles_1.png?raw=true" />
+<img src="resources\images\particles_2.png?raw=true" />
+
+#
 
 ## Setup
 Download [Node.js](https://nodejs.org/en/download/).
